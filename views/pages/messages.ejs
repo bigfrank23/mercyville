@@ -1,0 +1,136 @@
+<!-- views/pages/messages.ejs -->
+
+<%- include('../partials/header.ejs') %>
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2 style="color: #03033a;">Messages</h2>
+        <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <section id="popular-courses" class="courses">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Messages</h2>
+          </div>
+  
+          <div class="row">
+            <% const posts = [
+                {
+                    title: "Web Development",
+                    content: "Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.",
+                    userImg: "assets/img/trainers/trainer-1.jpg",
+                    userName:'Peter',
+                    img: "assets/img/course-1.jpg"
+                },
+                {
+                    title: "Marketing",
+                    content: "Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.",
+                    userImg: "assets/img/trainers/trainer-2.jpg",
+                    userName:' Lana',
+                    img: "assets/img/course-2.jpg"
+                },
+                {
+                    title: "Content",
+                    content: "Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.",
+                    userImg: "assets/img/trainers/trainer-3.jpg",
+                    userName:'James',
+                    img: "assets/img/course-3.jpg"
+                }
+                // Add more posts here
+            ]; %>
+            
+            <% posts.forEach((post, index) => { %>
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="border-top: ipx solid #03033a;">
+                <div class="course-item" style="box-shadow: 0px 0px 10px #eef0ef;">
+                    <div class="course-content" style="border-top: 1px solid #03033a;">
+                        <div style="border-top: 1px solid #f49025;" class="trainer d-flex justify-content-between align-items-center">
+                            <div class="trainer-profile d-flex align-items-center">
+                              <img src=<%= post.userImg %> class="img-fluid" alt="">
+                              <span class="post-userName"><%= post.userName %></span>
+                            </div>
+                            <div class="trainer-rank d-flex align-items-center">
+                              <i class="bx bx-heart"></i>&nbsp;42
+                              &nbsp;&nbsp;
+                              <i class="bi bi-clock"></i>&nbsp;4pm
+                            </div>
+                        </div>
+                        <hr>
+                            <h6 class="post-title"><%= post.title %></h6>
+                        <hr>
+                            <p class="post-desc">
+                                <i style="font-size: 2rem; color: #f49025;" class="bx bxs-quote-alt-left quote-icon-left"></i><br/>
+                                <%= post.content %>
+                            </p>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-<%= index %>">
+                            <button type="button" class="btn btn-secondary my-1">See all</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+  
+        </div>
+      </section><!-- End Popular Courses Section -->
+      <!-- Pagination -->
+      <div class="container mt-4">
+        <ul class="pagination" style="justify-content: center !important;">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+
+<%- include('../partials/banner1.ejs') %>
+<%- include('../partials/footer.ejs') %>
+
+
+<% /* Create modals for each post */ %>
+<% posts.forEach((post, index) => { %>
+<div class="modal fade" id="modal-<%= index %>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="trainer d-flex justify-content-between align-items-center" style="padding: 1rem 1rem 0 1rem;">
+                <div class="trainer-profile d-flex align-items-center gap-1">
+                  <img style="width: 40px; height: 40px; border-radius: 50%;" src=<%= post.userImg %> class="img-fluid" alt="">
+                  <span class="post-userName"><%= post.userName %></span>
+                </div>
+                <div class="trainer-rank d-flex align-items-center">
+                  &nbsp;&nbsp;
+                  <i class="bx bx-heart"></i>&nbsp;42
+                  &nbsp;&nbsp;
+                  <i class="bi bi-clock"></i>&nbsp;4pm
+                </div>
+              </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel"><%= post.title %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <%= post.content %>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+<% }) %>
+
+</main>
